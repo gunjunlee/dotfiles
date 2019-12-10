@@ -1,0 +1,7 @@
+[user]
+	email = kevin970401@gmail.com
+	name = kevin970401
+[alias]
+	lg = log --all --decorate --oneline --graph
+	stat = status -u
+	showtrackedignored = ls-files -i --exclude-standard
