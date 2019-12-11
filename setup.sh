@@ -1,5 +1,7 @@
-# install Rust
+apt install llvm
+apt install clang
 
+# install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # install fd
