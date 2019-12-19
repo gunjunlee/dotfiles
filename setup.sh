@@ -9,7 +9,8 @@ cargo install --git https://github.com/sharkdp/fd
 
 # install bat
 cargo install --git https://github.com/sharkdp/bat
-## BAT_THEME=ansi_light # for terminal whose background is white
+## export BAT_THEME="ansi-light" # for terminal whose background is white
+## export BAT_THEME="ansi-dark" # for terminal whose background is black
 
 # install exa
 cargo install --git https://github.com/ogham/exa
