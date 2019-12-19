@@ -4,4 +4,5 @@
 [alias]
 	lg = log --all --decorate --oneline --graph
 	stat = status -u
-	showtrackedignored = ls-files -i --exclude-standard
+	trackedignored = ls-files -i --exclude-standard
+	tracked = ls-tree -r master --name-only
