@@ -27,10 +27,16 @@ alias gstatus="gstat"
 alias gdiff="git diff"
 alias gadd="git add"
 
-alias gh='git history'
-alias gha='gh --all'
-alias gd='git diff --no-prefix'
-alias gdc='gd --cached --no-prefix'
-alias gds='gd --staged --no-prefix'
-alias gs='git stat'
-
+alias gh="git history"
+alias gha="gh --all"
+alias gd="git diff --no-prefix"
+alias gdc="gd --cached --no-prefix"
+alias gds="gd --staged --no-prefix"
+alias gs="git stat"
+alias gc="git commit"
+alias gcm="git commit -m"
+alias gca="git commit --amend"
+alias gl="git lg"
+alias gp="git push"
+alias ga="git add"
+alias gb="git branch"
