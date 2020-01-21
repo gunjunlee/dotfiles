@@ -22,6 +22,13 @@ tasks = {
         }
 
 post_actions = [
+# install oh-my-zsh
+'''
+if ! [ -e $HOME/.oh-my-zsh ]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+''',
+
 # install Rust
 '''
 if [ -e $HOME/.cargo/env ]; then
@@ -131,4 +138,3 @@ if errors:
     print()
 else:
     print(GREEN("✔  You are all set! "))
-
