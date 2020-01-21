@@ -18,11 +18,15 @@ tasks = {
         '~/.zshrc': 'zsh/zshrc',
         '~/.gitconfig': 'git/gitconfig',
         '~/.zsh': 'zsh',
+        '~/.zprofile': 'zsh/zprofile',
         }
 
 post_actions = [
 # install Rust
 '''
+if [ -e $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
 if ! [ -x "$(command -v rustc)" ]; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
