@@ -1,8 +1,0 @@
-[user]
-	email = kevin970401@gmail.com
-	name = kevin970401
-[alias]
-	lg = log --all --decorate --oneline --graph
-	stat = status -u
-	trackedignored = ls-files -i --exclude-standard
-	tracked = ls-tree -r master --name-only

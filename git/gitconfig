@@ -1,0 +1,16 @@
+[alias]
+	stat = status -u
+	trackedignored = ls-files -i --exclude-standard
+	tracked = ls-tree -r master --name-only
+	unstage = reset HEAD --
+	discard = checkout --
+	co = checkout
+	history = log --graph --decorate --all \
+                  --pretty=format:'%C(yellow)%h%Creset  %C(auto)%d%Creset %s  %Cgreen(%ar) %C(bold blue)<%an>%Creset' \
+                  --abbrev-commit --date=short --date-order -n30
+	amend = commit --amend -v
+	lg = log --graph --decorate --all \
+                  --pretty=format:'%C(yellow)%h%Creset  %C(auto)%d%Creset %s  %Cgreen(%ar) %C(bold blue)<%an>%Creset' \
+                  --abbrev-commit --date=short --date-order -n30
+        amend = commit --amend -v
+
