@@ -1,4 +1,7 @@
-bash setup.sh
-git clone https://github.com/kevin970401/dotfiles.git ~/.dotfiles
-python ~/.dotfiles/install.py
+# Installation
 
+```
+git clone https://github.com/kevin970401/dotfiles.git ~/.dotfiles
+bash setup.sh
+python3 ~/.dotfiles/install.py
+```
