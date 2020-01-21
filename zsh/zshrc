@@ -12,3 +12,6 @@ for config_file (${ZDOTDIR:-$HOME}/.zsh/zsh.d/*.zsh(N)) source $config_file
 if [ -e ${HOME}/.setting ]; then
 	source ${HOME}/.setting
 fi
+
+unsetopt correct_all
+
