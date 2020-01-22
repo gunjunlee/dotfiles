@@ -17,7 +17,7 @@ if [ -x "$(command -v exa)" ]; then
 fi
 alias ll="ls -alFh"
 if [ -x "$(command -v bat)" ]; then
-	alias cat="bat --no-pager"
+	alias cat="bat -p"
 fi
 alias c="command"
 
