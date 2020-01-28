@@ -40,3 +40,20 @@ alias gl="git lg"
 alias gp="git push"
 alias ga="git add"
 alias gb="git branch"
+alias gpl="git pull"
+
+alias gluname="git config --local user.name"
+alias gguname="git config --global user.name"
+alias gluemail="git config --local user.email"
+alias gguemail="git config --global user.email"
+
+function gluser(){
+	gluname $1
+	gluemail $2
+}
+
+function gguser(){
+	gguname $1
+	gguemail $2
+}
+
