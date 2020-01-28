@@ -1,1 +1,7 @@
-export PATH="$HOME/.cargo/bin:$PATH"
+if ! (( ${path[(I)$HOME/.cargo/bin]} )); then
+	path=( $HOME/.cargo/bin $path )
+fi
+
+if ! (( ${path[(I)$HOME/.local/bin]} )); then
+	path=( $HOME/.local/bin $path )
+fi

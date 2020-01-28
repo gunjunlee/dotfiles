@@ -19,6 +19,8 @@ tasks = {
         '~/.gitconfig': 'git/gitconfig',
         '~/.zsh': 'zsh',
         '~/.zprofile': 'zsh/zprofile',
+
+	'~/.local/bin/fasd': 'zsh/fasd/fasd',
         }
 
 post_actions = [
