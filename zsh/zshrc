@@ -13,6 +13,7 @@ bindkey "[D" backward-word
 bindkey "[C" forward-word
 bindkey "^[[1;2D" backward-word
 bindkey "^[[1;2C" forward-word
+bindkey "Ω" undo
 
 export BAT_CONFIG_PATH=$HOME/.batconfig
 
