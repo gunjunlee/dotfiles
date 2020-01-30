@@ -57,3 +57,4 @@ function gguser(){
 	gguemail $2
 }
 
+alias genautoenv="touch .autoenv.zsh .autoenv_leave.zsh"
