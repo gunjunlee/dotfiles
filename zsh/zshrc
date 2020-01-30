@@ -16,3 +16,6 @@ bindkey "^[[1;2C" forward-word
 
 export BAT_CONFIG_PATH=$HOME/.batconfig
 
+source $HOME/.zplug/init.zsh
+zplug "Tarrasch/zsh-autoenv"
+
