@@ -21,16 +21,11 @@ tasks = {
         '~/.zprofile': 'zsh/zprofile',
 
 	'~/.local/bin/fasd': 'zsh/fasd/fasd',
+
+        '~/.slimzsh': 'zsh/slimzsh'
         }
 
 post_actions = [
-# install oh-my-zsh
-'''
-if ! [ -e $HOME/.oh-my-zsh ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
-''',
-
 # install Rust
 '''
 if [ -e $HOME/.cargo/env ]; then

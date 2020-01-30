@@ -1,3 +1,6 @@
 [submodule "zsh/fasd"]
 	path = zsh/fasd
 	url = https://github.com/clvv/fasd.git
+[submodule "zsh/slimzsh"]
+	path = zsh/slimzsh
+	url = https://github.com/changs/slimzsh
