@@ -9,3 +9,8 @@ fi
 
 unsetopt correct_all
 
+bindkey "[D" backward-word
+bindkey "[C" forward-word
+bindkey "^[[1;2D" backward-word
+bindkey "^[[1;2C" forward-word
+
