@@ -23,5 +23,7 @@ bindkey "^[[B" down-line-or-history
 export BAT_CONFIG_PATH=$HOME/.batconfig
 
 source $HOME/.zplug/init.zsh
+
+source $HOME/.zsh/zsh-autoenv/autoenv.zsh
 zplug "Tarrasch/zsh-autoenv"
 
