@@ -17,6 +17,7 @@ args = parser.parse_args()
 tasks = {
         '~/.zshrc': 'zsh/zshrc',
         '~/.gitconfig': 'git/gitconfig',
+        '~/.batconfig': 'bat/batconfig',
         '~/.zsh': 'zsh',
         '~/.zprofile': 'zsh/zprofile',
 
