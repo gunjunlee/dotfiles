@@ -58,3 +58,8 @@ function gguser(){
 }
 
 alias genautoenv="touch .autoenv.zsh .autoenv_leave.zsh"
+
+# tmux
+alias tl="tmux ls"
+alias ta="tmux attach -t"
+

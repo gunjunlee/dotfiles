@@ -18,6 +18,7 @@ tasks = {
         '~/.zshrc': 'zsh/zshrc',
         '~/.gitconfig': 'git/gitconfig',
         '~/.batconfig': 'bat/batconfig',
+	'~/.tmux.conf': 'tmux/tmuxconfig',
         '~/.zsh': 'zsh',
         '~/.zprofile': 'zsh/zprofile',
 
