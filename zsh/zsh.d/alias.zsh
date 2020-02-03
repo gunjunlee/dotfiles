@@ -12,11 +12,11 @@ function ns() {
 
 alias v="vim"
 
-if [ -x "$(command -v exa)" ]; then
+if [ -x $(command -v exa) ]; then
 	alias ls="exa"
 fi
-alias ll="ls -alFh"
-if [ -x "$(command -v bat)" ]; then
+alias ll="ls -alFgh"
+if [ -x $(command -v bat) ]; then
 	alias cat="bat -p"
 fi
 alias c="command"
