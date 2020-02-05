@@ -7,3 +7,6 @@
 [submodule "zsh/zsh-autoenv"]
 	path = zsh/zsh-autoenv
 	url = https://github.com/Tarrasch/zsh-autoenv
+[submodule "tmux/tpm"]
+	path = tmux/tpm
+	url = https://github.com/tmux-plugins/tpm
