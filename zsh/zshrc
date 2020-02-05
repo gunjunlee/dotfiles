@@ -18,7 +18,7 @@ bindkey "^[[1;2B" end-of-line
 bindkey "Ω" undo
 bindkey "^[[A" up-line-or-history
 bindkey "^[[B" down-line-or-history
-
+bindkey "^H" backward-kill-word
 
 export BAT_CONFIG_PATH=$HOME/.batconfig
 
