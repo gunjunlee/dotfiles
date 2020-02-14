@@ -41,6 +41,7 @@ alias gp="git push"
 alias ga="git add"
 alias gb="git branch"
 alias gpl="git pull"
+alias gf="git fetch"
 
 alias gluname="git config --local user.name"
 alias gguname="git config --global user.name"
