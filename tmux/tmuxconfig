@@ -1,5 +1,4 @@
 set -g mouse on
-set -g default-command "reattach-to-user-namespace -l $SHELL"
 
 bind -Tcopy-mode WheelUpPane send -N1 -X scroll-up
 bind -Tcopy-mode WheelDownPane send -N1 -X scroll-down
