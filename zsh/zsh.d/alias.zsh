@@ -65,3 +65,11 @@ alias tl="tmux ls"
 alias ta="tmux attach -t"
 alias tn="tmux new -s"
 
+
+pip(){
+	if [[ $@ == "clear" ]]; then
+		command pip freeze | grep -v "^-e" | xargs pip uninstall -y
+	else
+		command pip "$@"
+	fi
+}
