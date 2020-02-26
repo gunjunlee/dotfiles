@@ -18,12 +18,13 @@ tasks = {
         '~/.zshrc': 'zsh/zshrc',
         '~/.gitconfig': 'git/gitconfig',
         '~/.batconfig': 'bat/batconfig',
-	'~/.tmux.conf': 'tmux/tmuxconfig',
+        '~/.vimrc': 'vim/vimrc',
+        '~/.tmux.conf': 'tmux/tmuxconfig',
         '~/.tmux/plugins/tpm': 'tmux/tpm',
         '~/.zsh': 'zsh',
         '~/.zprofile': 'zsh/zprofile',
 
-	'~/.local/bin/fasd': 'zsh/fasd/fasd',
+        '~/.local/bin/fasd': 'zsh/fasd/fasd',
 
         '~/.slimzsh': 'zsh/slimzsh'
         }
