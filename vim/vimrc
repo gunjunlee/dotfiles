@@ -10,3 +10,21 @@ set shiftwidth=4
 set expandtab
 
 set noswapfile
+set number
+
+set incsearch  " incremental search
+set hlsearch  " hight search results
+
+colorscheme delek
+
+call plug#begin('~/.vim/plugged')
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+call plug#end()
+
+let g:deoplete#enable_at_startup = 1

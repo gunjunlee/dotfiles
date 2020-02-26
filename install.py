@@ -18,15 +18,17 @@ tasks = {
         '~/.zshrc': 'zsh/zshrc',
         '~/.gitconfig': 'git/gitconfig',
         '~/.batconfig': 'bat/batconfig',
+        '~/.vim': 'vim/',
         '~/.vimrc': 'vim/vimrc',
+        '~/.config/nvim': 'nvim',
         '~/.tmux.conf': 'tmux/tmuxconfig',
-        '~/.tmux/plugins/tpm': 'tmux/tpm',
-        '~/.zsh': 'zsh',
+        '~/.tmux/plugins/tpm': 'tmux/tpm/',
+        '~/.zsh': 'zsh/',
         '~/.zprofile': 'zsh/zprofile',
 
         '~/.local/bin/fasd': 'zsh/fasd/fasd',
 
-        '~/.slimzsh': 'zsh/slimzsh'
+        '~/.slimzsh': 'zsh/slimzsh/'
         }
 
 post_actions = [
@@ -70,6 +72,15 @@ if ! [ -x "$(command -v exa)" ]; then
     cargo install --git https://github.com/ogham/exa
 fi
 ''',
+
+# install vim-plug
+# https://github.com/junegunn/vim-plug
+'''
+if ! [ -e $HOME/.vim/autoload/plug.vim ]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+'''
 ]
 
 def _wrap_colors(ansicode):
