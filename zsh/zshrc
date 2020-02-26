@@ -1,11 +1,11 @@
+# user setting
+if [ -e ${HOME}/.setting ]; then
+        source ${HOME}/.setting
+fi
+
 source $HOME/.slimzsh/slim.zsh
 
 for config_file (${ZDOTDIR:-$HOME}/.zsh/zsh.d/*.zsh(N)) source $config_file
-
-# user setting
-if [ -e ${HOME}/.setting ]; then
-	source ${HOME}/.setting
-fi
 
 unsetopt correct_all
 
