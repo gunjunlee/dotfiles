@@ -4,13 +4,15 @@ alias sa="source .venv/bin/activate"
 alias jn="jupyter notebook"
 alias jl="jupyter lab"
 
-# 
+#  nvidia-smi
 alias smi="nvidia-smi"
 function ns() {
         watch -n 0.1 "nvidia-smi $@"
 }
 
-alias v="vim"
+alias v="nvim"
+alias vim="nvim"
+alias vi="nvim"
 
 if [ -x "$(command -v exa)" ]; then
 	alias ls="exa"

@@ -2,6 +2,8 @@ if has("syntax")
     syntax on
 endif
 
+set mouse=a " enable mouse
+
 set autoindent
 set cindent
 
@@ -25,6 +27,9 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'deoplete-plugins/deoplete-jedi'
 call plug#end()
 
 let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog = system('echo -n $(which python3)') " expand('/usr/bin/python3')
+let g:deoplete#sources#jedi#show_docstring = 1
