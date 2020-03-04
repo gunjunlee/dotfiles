@@ -17,7 +17,7 @@ case "${unameOut}" in
             echo -e "${GREEN}installing brew...${NC}"
             /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         fi
-        brew install feh wget openssl htop ;;
+        brew install feh wget openssl htop neovim ;;
     # CYGWIN*)    machine=Cygwin;;
     # MINGW*)     machine=MinGw;;
     *)
