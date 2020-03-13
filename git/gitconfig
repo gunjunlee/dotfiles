@@ -12,7 +12,6 @@
 	lg = log --graph --decorate --all \
                   --pretty=format:'%C(yellow)%h%Creset  %C(auto)%d%Creset %s  %Cgreen(%ar) %C(bold blue)<%an>%Creset' \
                   --abbrev-commit --date=short --date-order -n300
-        amend = commit --amend -v
-
+    cancel = reset --soft HEAD^
 [core]
 	editor = "vim"
