@@ -10,9 +10,11 @@ function ns() {
         watch -n 0.1 "nvidia-smi $@"
 }
 
-alias v="nvim"
-alias vim="nvim"
-alias vi="nvim"
+if [ -x "$(command -v nvim)" ]; then
+    alias v="nvim"
+    alias vim="nvim"
+    alias vi="nvim"
+fi
 
 if [ -x "$(command -v exa)" ]; then
 	alias ls="exa"
@@ -44,6 +46,8 @@ alias ga="git add"
 alias gb="git branch"
 alias gpl="git pull"
 alias gf="git fetch"
+alias gbl="git branch -l"
+alias gco="git checkout"
 
 alias gluname="git config --local user.name"
 alias gguname="git config --global user.name"
