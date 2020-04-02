@@ -48,6 +48,7 @@ alias gpl="git pull"
 alias gf="git fetch"
 alias gbl="git branch -l"
 alias gco="git checkout"
+alias gcp="git cherry-pick"
 
 alias gluname="git config --local user.name"
 alias gguname="git config --global user.name"
