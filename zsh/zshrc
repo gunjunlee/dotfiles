@@ -25,6 +25,8 @@ export HISFILE=$HOME/.zsh_history
 
 source $HOME/.zplug/init.zsh
 
+source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 source $HOME/.zsh/zsh-autoenv/autoenv.zsh
 zplug "Tarrasch/zsh-autoenv"
 
