@@ -9,10 +9,9 @@ for config_file (${ZDOTDIR:-$HOME}/.zsh/zsh.d/*.zsh(N)) source $config_file
 
 unsetopt correct_all
 
-bindkey "[D" backward-word
-bindkey "[C" forward-word
+# use cat
 bindkey "^[[1;2D" backward-word
-bindkey "^[[1;2C" forward-word
+bindkey "^[[1;2C" forward-word 
 bindkey "^[[1;2A" beginning-of-line
 bindkey "^[[1;2B" end-of-line
 bindkey "Ω" undo
