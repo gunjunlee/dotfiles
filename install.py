@@ -73,6 +73,14 @@ if ! [ -x "$(command -v exa)" ]; then
 fi
 ''',
 
+# install ripgrep
+'''
+source $HOME/.cargo/env
+if ! [ -x "$(command -v rg)" ]; then
+    cargo install --git https://github.com/BurntSushi/ripgrep.git
+fi
+''',
+
 # install vim-plug
 # https://github.com/junegunn/vim-plug
 '''
