@@ -10,6 +10,9 @@ function ns() {
         watch -n 0.1 "nvidia-smi $@"
 }
 
+alias cudamem="fuser -v /dev/nvidia*"
+alias gpumem="cudamem"
+
 if [ -x "$(command -v nvim)" ]; then
     alias v="nvim"
     alias vim="nvim"
