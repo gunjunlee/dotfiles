@@ -27,6 +27,8 @@ if [ -x "$(command -v bat)" ]; then
 	alias cat="bat -p"
 fi
 alias c="command"
+alias watch="command watch --color"
+alias w="watch"
 
 # git alias
 alias gstat="git status -u"
