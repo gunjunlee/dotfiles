@@ -10,14 +10,15 @@ unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)
         echo -e "${Cyan}Linux DETECTED!${NC}"
-        apt install -y llvm clang feh wget htop ;;
+	apt update
+        apt install -y llvm clang feh wget htop zsh make ;;
     Darwin*)
         echo -e "${Cyan}Mac DETECTED!${NC}"
         if ! [ -x "$(command -v brew)" ]; then
             echo -e "${GREEN}installing brew...${NC}"
             /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         fi
-        brew install feh wget openssl htop neovim ;;
+        brew install feh wget openssl htop neovim zsh ;;
     # CYGWIN*)    machine=Cygwin;;
     # MINGW*)     machine=MinGw;;
     *)
