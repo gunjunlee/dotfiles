@@ -24,3 +24,5 @@ case "${unameOut}" in
     *)
         echo "UNKNOWN:${unameOut}" ;;
 esac
+
+sudo chsh $(whoami) -s $(which zsh)
