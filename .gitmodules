@@ -4,12 +4,6 @@
 [submodule "zsh/slimzsh"]
 	path = zsh/slimzsh
 	url = https://github.com/changs/slimzsh
-[submodule "zsh/zsh-autoenv"]
-	path = zsh/zsh-autoenv
-	url = https://github.com/Tarrasch/zsh-autoenv
 [submodule "tmux/tpm"]
 	path = tmux/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "zsh/zsh-autosuggestions"]
-	path = zsh/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions.git
