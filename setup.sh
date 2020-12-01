@@ -11,7 +11,7 @@ case "${unameOut}" in
     Linux*)
         echo -e "${Cyan}Linux DETECTED!${NC}"
     	apt update
-        apt install -y llvm clang feh wget htop zsh make curl ;;
+        apt install -y llvm clang feh wget htop zsh make curl gawk ;;
     Darwin*)
         echo -e "${Cyan}Mac DETECTED!${NC}"
         if ! [ -x "$(command -v brew)" ]; then
