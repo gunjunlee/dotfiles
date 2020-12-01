@@ -89,6 +89,15 @@ if ! [ -e $HOME/.vim/autoload/plug.vim ]; then
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 '''
+
+# install fzf
+# install fzf via zplug doens't activate key-bindings, so install it in here
+'''
+if ! [ -x "$(command -v fzf)" ]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install --key-bindings --completion --update-rc
+fi
+'''
 ]
 
 def _wrap_colors(ansicode):
