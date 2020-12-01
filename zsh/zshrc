@@ -26,8 +26,13 @@ export HISFILE=$HOME/.zsh_history
 
 source $HOME/.zplug/init.zsh
 
-source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-source $HOME/.zsh/zsh-autoenv/autoenv.zsh
 zplug "Tarrasch/zsh-autoenv"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-history-substring-search"
+
+if ! zplug check --verbose; then
+    zplug install
+fi
+
+zplug load
 
