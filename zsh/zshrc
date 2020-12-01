@@ -14,8 +14,8 @@ unsetopt correct_all
 # use cat
 bindkey "^[[1;2D" backward-word
 bindkey "^[[1;2C" forward-word 
-bindkey "^[[1;2A" beginning-of-line
-bindkey "^[[1;2B" end-of-line
+bindkey "^[[1;2A" history-beginning-search-backward
+bindkey "^[[1;2B" history-beginning-search-forward
 bindkey "Ω" undo
 bindkey "^[[A" up-line-or-history
 bindkey "^[[B" down-line-or-history
