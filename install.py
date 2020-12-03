@@ -102,6 +102,7 @@ fi
 # install neovim
 '''
 if ! [ -x "$(command -v nvim)" ]; then
+    conda deactivate;
     temp_dir=$(mktemp -d)
     git clone https://github.com/neovim/neovim ${temp_dir}
     cd ${temp_dir}
