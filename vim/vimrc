@@ -31,8 +31,6 @@ call plug#begin('~/.vim/plugged')
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-    Plug 'preservim/nerdtree' "file system explorer
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } "fzf
     "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "auto complete
     
     "deoplete Vim8.1 with Python 3.6.1+ required
@@ -40,6 +38,7 @@ else
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'preservim/nerdtree' "file system explorer
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } "fzf
 "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "auto complete 
