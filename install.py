@@ -98,6 +98,19 @@ if ! [ -x "$(command -v fzf)" ]; then
     ~/.fzf/install --key-bindings --completion --update-rc
 fi
 '''
+
+# install neovim
+'''
+if ! [ -x "$(command -v nvim)" ]; then
+    temp_dir=$(mktemp -d)
+    git clone https://github.com/neovim/neovim ${temp_dir}
+    cd ${temp_dir}
+    git checkout stable
+    make
+    sudo make install
+    rm -rf ${temp_dir}
+fi
+'''
 ]
 
 def _wrap_colors(ansicode):

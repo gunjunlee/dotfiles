@@ -5,9 +5,11 @@ endif
 set mouse=a " enable mouse
 
 "Works in normal mode, must press Esc first"
-map <C-s> :w<kEnter>
+map <C-s> :w<CR>
+map <C-b> :NERDTreeToggle<CR>
 "Works in insert mode, saves and puts back in insert mode"
 imap <C-s> <Esc>:w<kEnter>i<Right>
+imap <C-b> <Esc>:NERDTreeToggle<CR>
 
 set autoindent
 set cindent
@@ -26,16 +28,30 @@ colorscheme delek
 
 call plug#begin('~/.vim/plugged')
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'deoplete-plugins/deoplete-jedi'
-"else
-"  Plug 'Shougo/deoplete.nvim'
-"  Plug 'roxma/nvim-yarp'
-"  Plug 'roxma/vim-hug-neovim-rpc'
-"  Plug 'deoplete-plugins/deoplete-jedi'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+    Plug 'preservim/nerdtree' "file system explorer
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } "fzf
+    "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "auto complete
+    
+    "deoplete Vim8.1 with Python 3.6.1+ required
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'preservim/nerdtree' "file system explorer
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } "fzf
+"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "auto complete 
 call plug#end()
 
+"Shougo/deoplete.nvim
 let g:deoplete#enable_at_startup = 1
 let g:python3_host_prog = system('echo -n $(which python3)') " expand('/usr/bin/python3')
 let g:deoplete#sources#jedi#show_docstring = 1
+
+"SirVer/ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="vertical"
+
