@@ -1,7 +1,7 @@
 # Installation
 
 ```
-git clone https://github.com/kevin970401/dotfiles.git ~/.dotfiles
+git clone git@github.com:kevin970401/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 git submodule update --init --recursive
 sudo bash setup.sh
