@@ -25,7 +25,7 @@ case "${unameOut}" in
     Linux*)
         echo -e "${Cyan}Linux DETECTED!${NC}"
     	apt-get update
-        apt-get install -y llvm clang feh wget htop zsh make curl gawk autotools-dev automake libtool libtool-bin
+        apt-get install -y llvm clang feh wget htop zsh make curl gawk autotools-dev automake libtool libtool-bin cmake unzip pkg-config gettext
 
         dist="$(lsb_release -id -s | head -n 1)"
         echo -e "${Cyan}dist=${dist}${NC}"
