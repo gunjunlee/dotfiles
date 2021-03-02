@@ -53,4 +53,4 @@ case "${unameOut}" in
         echo -e "UNKNOWN:${unameOut}" ;;
 esac
 
-sudo chsh $(whoami) -s $(which zsh)
+chsh $(whoami) -s $(which zsh)
