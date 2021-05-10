@@ -25,7 +25,7 @@ case "${unameOut}" in
     Linux*)
         echo -e "${Cyan}Linux DETECTED!${NC}"
     	apt-get update
-        apt-get install -y llvm clang feh wget htop zsh make curl gawk autotools-dev automake libtool libtool-bin cmake unzip pkg-config gettext
+        apt-get install -y llvm clang feh wget htop zsh make curl gawk autotools-dev automake libtool libtool-bin cmake unzip pkg-config gettext direnv
 
         dist="$(lsb_release -id -s | head -n 1)"
         echo -e "${Cyan}dist=${dist}${NC}"
@@ -46,7 +46,7 @@ case "${unameOut}" in
             echo -e "${GREEN}installing brew...${NC}"
             /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         fi
-        brew install feh wget openssl htop neovim zsh ;;
+        brew install feh wget openssl htop neovim zsh direnv ;;
     # CYGWIN*)    machine=Cygwin;;
     # MINGW*)     machine=MinGw;;
     *)
