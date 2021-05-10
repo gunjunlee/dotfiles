@@ -13,5 +13,7 @@
                   --pretty=format:'%C(yellow)%h%Creset  %C(auto)%d%Creset %s  %Cgreen(%ar) %C(bold blue)<%an>%Creset' \
                   --abbrev-commit --date=short --date-order -n1000
     cancel = reset --soft HEAD^
+	hierarchy = log --all --graph --decorate --oneline --simplify-by-decoration
+	ha = log --all --graph --decorate --oneline --simplify-by-decoration
 [core]
 	editor = "vim"
