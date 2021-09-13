@@ -44,8 +44,8 @@ case "${unameOut}" in
         echo -e "${Cyan}Mac DETECTED!${NC}"
         if ! [ -x "$(command -v brew)" ]; then
             echo -e "${GREEN}installing brew...${NC}"
-            /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        fi
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	fi
         brew install feh wget openssl htop neovim zsh direnv ;;
     # CYGWIN*)    machine=Cygwin;;
     # MINGW*)     machine=MinGw;;
