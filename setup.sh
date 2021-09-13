@@ -24,8 +24,8 @@ unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)
         echo -e "${Cyan}Linux DETECTED!${NC}"
-    	apt-get update
-        apt-get install -y llvm clang feh wget htop zsh make curl gawk autotools-dev automake libtool libtool-bin cmake unzip pkg-config gettext direnv
+    	sudo apt-get update
+        sudo apt-get install -y llvm clang feh wget htop zsh make curl gawk autotools-dev automake libtool libtool-bin cmake unzip pkg-config gettext direnv
 
         dist="$(lsb_release -id -s | head -n 1)"
         echo -e "${Cyan}dist=${dist}${NC}"
@@ -34,7 +34,7 @@ case "${unameOut}" in
                 version="$(lsb_release -r -s)"
                 echo -e "${Cyan}version=${version}${NC}"
                 if [[ "${version}" > "16.04" ]]; then
-                    apt-get install -y neovim
+                    sudo apt-get install -y neovim
                 fi
                 ;;
             *)
@@ -53,4 +53,4 @@ case "${unameOut}" in
         echo -e "UNKNOWN:${unameOut}" ;;
 esac
 
-chsh $(whoami) -s $(which zsh)
+sudo chsh $(whoami) -s $(which zsh)
