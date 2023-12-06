@@ -77,7 +77,7 @@ alias tl="tmux ls"
 alias ta="tmux attach -t"
 alias tn="tmux new -s"
 
-
+# pip
 pip(){
 	if [[ $@ == "clear" ]]; then
 		command pip freeze | grep -v "^-e" | xargs pip uninstall -y
@@ -85,3 +85,6 @@ pip(){
 		command pip "$@"
 	fi
 }
+
+# conda
+alias conex="curl -s https://raw.githubusercontent.com/gunjunlee/Conda-Tools/main/conda_export.py | python - --from-history"
