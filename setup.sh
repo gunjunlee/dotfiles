@@ -46,7 +46,8 @@ case "${unameOut}" in
             echo -e "${GREEN}installing brew...${NC}"
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	fi
-        brew install feh wget openssl htop neovim zsh direnv ;;
+        brew install feh wget openssl htop neovim zsh direnv ccache ;;
+        rvm get stable --auto-dotfiles
         defaults write com.apple.PowerChime ChimeOnNoHardware -bool true;killall PowerChime # disable charging sound
     # CYGWIN*)    machine=Cygwin;;
     # MINGW*)     machine=MinGw;;
