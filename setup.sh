@@ -24,8 +24,9 @@ unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)
         echo -e "${Cyan}Linux DETECTED!${NC}"
+        sudo add-apt-repository ppa:maveonair/helix-editor
     	sudo apt-get update
-        sudo apt-get install -y llvm clang feh wget htop zsh make curl gawk autotools-dev automake libtool libtool-bin cmake unzip pkg-config gettext direnv
+        sudo apt-get install -y llvm clang feh wget htop zsh make curl gawk autotools-dev automake libtool libtool-bin cmake unzip pkg-config gettext direnv helix ripgrep fd-find
 
         dist="$(lsb_release -id -s | head -n 1)"
         echo -e "${Cyan}dist=${dist}${NC}"
@@ -46,7 +47,7 @@ case "${unameOut}" in
             echo -e "${GREEN}installing brew...${NC}"
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	fi
-        brew install feh llvm wget openssl htop neovim zsh direnv ccache
+        brew install feh llvm wget openssl htop neovim zsh direnv ccache bottom igrep helix ripgrep fd
         rvm get stable --auto-dotfiles
         echo 'export PATH="/usr/local/opt/llvm/bin:$PATH"' >> ~/.setting
         ln -s $(which lld) /usr/local/bin/ld

@@ -53,7 +53,7 @@ fi
 '''
 source $HOME/.cargo/env
 if ! [ -x "$(command -v fd)" ]; then
-    cargo install --git https://github.com/sharkdp/fd
+    cargo install fd-find
 fi
 ''',
 
@@ -61,7 +61,7 @@ fi
 '''
 source $HOME/.cargo/env
 if ! [ -x "$(command -v bat)" ]; then
-    cargo install --git https://github.com/sharkdp/bat
+    cargo install bat
 fi
 ''',
 
@@ -69,7 +69,7 @@ fi
 '''
 source $HOME/.cargo/env
 if ! [ -x "$(command -v exa)" ]; then
-    cargo install --git https://github.com/ogham/exa
+    cargo install exa
 fi
 ''',
 
@@ -77,7 +77,7 @@ fi
 '''
 source $HOME/.cargo/env
 if ! [ -x "$(command -v rg)" ]; then
-    cargo install --git https://github.com/BurntSushi/ripgrep.git
+    cargo install ripgrep
 fi
 ''',
 
@@ -96,20 +96,6 @@ fi
 if ! [ -x "$(command -v fzf)" ]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install --key-bindings --completion --update-rc
-fi
-'''
-
-# install neovim
-'''
-if ! [ -x "$(command -v nvim)" ]; then
-    conda deactivate;
-    temp_dir=$(mktemp -d)
-    git clone https://github.com/neovim/neovim ${temp_dir}
-    cd ${temp_dir}
-    git checkout stable
-    make
-    sudo make install
-    rm -rf ${temp_dir}
 fi
 '''
 ]
