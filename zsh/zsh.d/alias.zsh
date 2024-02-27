@@ -19,7 +19,7 @@ alias gpumem="cudamem"
 if [ -x "$(command -v eza)" ]; then
 	alias ls="eza"
 fi
-alias ll="ls -alFgh"
+alias ll="ls -algh"
 if [ -x "$(command -v bat)" ]; then
 	alias cat="bat -p"
 fi
