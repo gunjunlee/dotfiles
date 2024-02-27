@@ -1,3 +1,6 @@
+# github copilot
+alias co="gh copilot suggest"
+
 # python alias
 alias ca="conda activate"
 alias sa="source .venv/bin/activate"
@@ -13,8 +16,8 @@ function ns() {
 alias cudamem="fuser -v /dev/nvidia*"
 alias gpumem="cudamem"
 
-if [ -x "$(command -v exa)" ]; then
-	alias ls="exa"
+if [ -x "$(command -v eza)" ]; then
+	alias ls="eza"
 fi
 alias ll="ls -alFgh"
 if [ -x "$(command -v bat)" ]; then
@@ -30,8 +33,6 @@ alias gstatus="gstat"
 alias gdiff="git diff"
 alias gadd="git add"
 
-alias gh="git history"
-alias gha="gh --all"
 alias gd="git diff --no-prefix"
 alias gdc="gd --cached --no-prefix"
 alias gds="gd --staged --no-prefix"

@@ -1,6 +1,6 @@
 """
-kevin970401's docfile
-https://github.com/kevin970401/dotfiles.git
+lgj970401's dotfile
+https://github.com/lgj970401/dotfiles.git
 """
 print(__doc__)
 
@@ -31,6 +31,24 @@ tasks = {
         }
 
 post_actions = [
+# install miniforge
+'''
+if ! [ -x "$(command -v mamba)" ]; then
+    wget -O Miniforge3.sh "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+    bash Miniforge3.sh -b -p "${HOME}/conda"
+    source "${HOME}/conda/etc/profile.d/conda.sh"
+    source "${HOME}/conda/etc/profile.d/mamba.sh"
+    mamba init zsh
+fi
+''',
+
+# install compilers and build tools using mamba
+'''
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+mamba install -y ccache cmake ninja gcc gxx libzlib llvm-openmp
+''',
+
 # install zplug
 '''
 if ! [ -e $HOME/.zplug ]; then
@@ -40,17 +58,25 @@ fi
 
 # install Rust
 '''
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
 if [ -e $HOME/.cargo/env ]; then
     source $HOME/.cargo/env
 fi
 if ! [ -x "$(command -v rustc)" ]; then
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
 fi
 ''',
 
 # install fd
 '''
-source $HOME/.cargo/env
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if [ -e $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
 if ! [ -x "$(command -v fd)" ]; then
     cargo install fd-find
 fi
@@ -58,23 +84,38 @@ fi
 
 # install bat
 '''
-source $HOME/.cargo/env
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if [ -e $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
 if ! [ -x "$(command -v bat)" ]; then
     cargo install bat
 fi
 ''',
 
-# install exa
+# install eza
 '''
-source $HOME/.cargo/env
-if ! [ -x "$(command -v exa)" ]; then
-    cargo install exa
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if [ -e $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
+if ! [ -x "$(command -v eza)" ]; then
+    cargo install eza
 fi
 ''',
 
 # install ripgrep
 '''
-source $HOME/.cargo/env
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if [ -e $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
 if ! [ -x "$(command -v rg)" ]; then
     cargo install ripgrep
 fi
@@ -87,7 +128,7 @@ if ! [ -e $HOME/.vim/autoload/plug.vim ]; then
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
-'''
+''',
 
 # install fzf
 # install fzf via zplug doens't activate key-bindings, so install it in here
@@ -96,7 +137,26 @@ if ! [ -x "$(command -v fzf)" ]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install --key-bindings --completion --update-rc
 fi
+''',
+
+# install github cli
 '''
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if ! [ -x "$(command -v gh)" ]; then
+    mamba install gh
+fi
+''',
+
+# install github copilot
+'''
+if ! gh copilot > /dev/null 2>&1; then
+    gh extension install github/gh-copilot
+else
+    gh extension upgrade gh-copilot
+fi
+''',
 ]
 
 def _wrap_colors(ansicode):

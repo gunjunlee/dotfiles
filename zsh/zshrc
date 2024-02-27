@@ -14,7 +14,7 @@ unsetopt BEEP
 
 # use cat
 bindkey "^[[1;2D" backward-word
-bindkey "^[[1;2C" forward-word 
+bindkey "^[[1;2C" forward-word
 bindkey "^[[1;2A" history-substring-search-up
 bindkey "^[[1;2B" history-substring-search-down
 bindkey "Ω" undo
@@ -44,3 +44,4 @@ if [ -x "$(command -v direnv)" ]; then
     eval "$(direnv hook zsh)"
 fi
 
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
