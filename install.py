@@ -157,6 +157,16 @@ else
     gh extension upgrade gh-copilot
 fi
 ''',
+
+# install github cli
+'''
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if ! [ -x "$(command -v direnv)" ]; then
+    mamba install direnv
+fi
+''',
 ]
 
 def _wrap_colors(ansicode):
