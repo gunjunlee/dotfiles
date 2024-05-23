@@ -69,6 +69,19 @@ if ! [ -x "$(command -v rustc)" ]; then
 fi
 ''',
 
+# install igrep
+'''
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if [ -e $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
+if ! [ -x "$(command -v ig)" ]; then
+    cargo install igrep
+fi
+''',
+
 # install fd
 '''
 export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
