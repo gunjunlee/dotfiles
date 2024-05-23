@@ -9,3 +9,4 @@ if-shell "uname | grep -q Linux" \
 if-shell "uname | grep -q Darwin" \
 	"set -g status-right '#{cpu_bg_color} CPU: #{cpu_icon} #{cpu_percentage} | %a %h-%d %H:%M '"
 run -b '~/.tmux/plugins/tpm/tpm'
+bind | split-window -h
