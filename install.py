@@ -159,6 +159,10 @@ source "${HOME}/conda/etc/profile.d/conda.sh"
 source "${HOME}/conda/etc/profile.d/mamba.sh"
 if ! [ -x "$(command -v gh)" ]; then
     mamba install gh
+
+    if ! [ -e "${HOME}/.local/bin/gh" ]; then
+        ln -s "${HOME}/conda/bin/gh" "${HOME}/.local/bin/gh"
+    fi
 fi
 ''',
 
@@ -178,6 +182,10 @@ source "${HOME}/conda/etc/profile.d/conda.sh"
 source "${HOME}/conda/etc/profile.d/mamba.sh"
 if ! [ -x "$(command -v direnv)" ]; then
     mamba install direnv
+
+    if ! [ -e "${HOME}/.local/bin/direnv" ]; then
+        ln -s "${HOME}/conda/bin/direnv" "${HOME}/.local/bin/direnv"
+    fi
 fi
 ''',
 ]

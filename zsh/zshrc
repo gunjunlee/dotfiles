@@ -40,7 +40,9 @@ zplug load
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+export CPATH=${CPATH}:"${CONDA_PREFIX}/include"
+
+export PATH=$PATH:$HOME/.local/bin
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
