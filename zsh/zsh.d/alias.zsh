@@ -79,7 +79,7 @@ alias tn="tmux new -s"
 # zellij
 alias zl="zellij list-sessions"
 alias za="zellij attach"
-alias zn="zellij run -n"
+alias zn="zellij attach -c"
 
 # pip
 pip(){
