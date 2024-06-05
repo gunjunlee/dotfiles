@@ -3,6 +3,12 @@ if [ -e ${HOME}/.setting ]; then
     source ${HOME}/.setting
 fi
 
+if [ -e $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
+
+export PATH=$PATH:$HOME/.local/bin
+
 source $HOME/.slimzsh/slim.zsh
 
 for config_file (${ZDOTDIR:-$HOME}/.zsh/zsh.d/*.zsh(N)) source $config_file
@@ -37,12 +43,7 @@ fi
 
 zplug load
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export CPATH=${CPATH}:"${CONDA_PREFIX}/include"
-
-export PATH=$PATH:$HOME/.local/bin
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -62,10 +63,6 @@ unset __conda_setup
 # register direnv hook after conda initializing
 if [ -x "$(command -v direnv)" ]; then
     eval "$(direnv hook zsh)"
-fi
-
-if [ -e $HOME/.cargo/env ]; then
-    source $HOME/.cargo/env
 fi
 
 export COLORTERM="truecolor"
