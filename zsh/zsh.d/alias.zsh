@@ -16,6 +16,10 @@ function ns() {
 alias cudamem="fuser -v /dev/nvidia*"
 alias gpumem="cudamem"
 
+if [ -x "$(command -v nvim)" ]; then
+	alias vim="nvim"
+fi
+
 if [ -x "$(command -v eza)" ]; then
 	alias ls="eza"
 fi

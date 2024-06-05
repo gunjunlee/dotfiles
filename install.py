@@ -18,8 +18,12 @@ tasks = {
     '~/.gitconfig': 'git/gitconfig',
 
     '~/.batconfig': 'bat/batconfig',
+
     '~/.vim': 'vim/',
     '~/.vimrc': 'vim/vimrc',
+
+    '~/.config/nvim': 'NvChad/',
+
     '~/.config/zellij/config.kdl': 'zellij/config.kdl',
 
     '~/.tmux.conf': 'tmux/tmuxconfig',
@@ -31,8 +35,8 @@ tasks = {
 
     '~/.local/bin/fasd': 'zsh/fasd/fasd',
 
-    '~/.slimzsh': 'zsh/slimzsh/'
-    }
+    '~/.slimzsh': 'zsh/slimzsh/',
+}
 
 post_actions = [
 # install miniforge
