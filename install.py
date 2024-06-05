@@ -134,6 +134,83 @@ if ! [ -x "$(command -v rg)" ]; then
 fi
 ''',
 
+# install zellij
+'''
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if [ -e $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
+if ! [ -x "$(command -v zellij)" ]; then
+    cargo install zellij
+fi
+''',
+
+# install github cli
+'''
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if ! [ -e "${HOME}/.local/bin/gh" ]; then
+    mamba install -y gh
+    ln -s "${HOME}/conda/bin/gh" "${HOME}/.local/bin/gh"
+fi
+''',
+
+# install direnv
+'''
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if ! [ -e "${HOME}/.local/bin/direnv" ]; then
+    mamba install -y direnv
+    ln -s "${HOME}/conda/bin/direnv" "${HOME}/.local/bin/direnv"
+fi
+''',
+
+# install htop
+'''
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if ! [ -e "${HOME}/.local/bin/htop" ]; then
+    mamba install -y htop
+    ln -s "${HOME}/conda/bin/htop" "${HOME}/.local/bin/htop"
+fi
+''',
+
+# install gpustat
+'''
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if ! [ -e "${HOME}/.local/bin/gpustat" ]; then
+    mamba install -y gpustat
+    ln -s "${HOME}/conda/bin/gpustat" "${HOME}/.local/bin/gpustat"
+fi
+''',
+
+# install nvim
+'''
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if ! [ -e "${HOME}/.local/bin/nvim" ]; then
+    mamba install -y nvim
+    ln -s "${HOME}/conda/bin/nvim" "${HOME}/.local/bin/nvim"
+fi
+''',
+
+# install github copilot
+'''
+if ! gh copilot > /dev/null 2>&1; then
+    gh extension install github/gh-copilot
+else
+    gh extension upgrade gh-copilot
+fi
+''',
+
 # install vim-plug
 # https://github.com/junegunn/vim-plug
 '''
@@ -149,43 +226,6 @@ fi
 if ! [ -x "$(command -v fzf)" ]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install --key-bindings --completion --update-rc
-fi
-''',
-
-# install github cli
-'''
-export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
-source "${HOME}/conda/etc/profile.d/conda.sh"
-source "${HOME}/conda/etc/profile.d/mamba.sh"
-if ! [ -x "$(command -v gh)" ]; then
-    mamba install gh
-
-    if ! [ -e "${HOME}/.local/bin/gh" ]; then
-        ln -s "${HOME}/conda/bin/gh" "${HOME}/.local/bin/gh"
-    fi
-fi
-''',
-
-# install github copilot
-'''
-if ! gh copilot > /dev/null 2>&1; then
-    gh extension install github/gh-copilot
-else
-    gh extension upgrade gh-copilot
-fi
-''',
-
-# install github cli
-'''
-export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
-source "${HOME}/conda/etc/profile.d/conda.sh"
-source "${HOME}/conda/etc/profile.d/mamba.sh"
-if ! [ -x "$(command -v direnv)" ]; then
-    mamba install direnv
-
-    if ! [ -e "${HOME}/.local/bin/direnv" ]; then
-        ln -s "${HOME}/conda/bin/direnv" "${HOME}/.local/bin/direnv"
-    fi
 fi
 ''',
 ]
