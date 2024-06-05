@@ -15,20 +15,25 @@ parser.add_argument('-f', '--force', action="store_true", default=False,
 args = parser.parse_args()
 
 tasks = {
-        '~/.zshrc': 'zsh/zshrc',
-        '~/.gitconfig': 'git/gitconfig',
-        '~/.batconfig': 'bat/batconfig',
-        '~/.vim': 'vim/',
-        '~/.vimrc': 'vim/vimrc',
-        '~/.tmux.conf': 'tmux/tmuxconfig',
-        '~/.tmux/plugins/tpm': 'tmux/tpm/',
-        '~/.zsh': 'zsh/',
-        '~/.zprofile': 'zsh/zprofile',
+    '~/.gitconfig': 'git/gitconfig',
 
-        '~/.local/bin/fasd': 'zsh/fasd/fasd',
+    '~/.batconfig': 'bat/batconfig',
+    '~/.vim': 'vim/',
+    '~/.vimrc': 'vim/vimrc',
+    '~/.config/helix/config.toml': 'helix/config.toml',
+    '~/.config/zellij/config.kdl': 'zellij/config.kdl',
 
-        '~/.slimzsh': 'zsh/slimzsh/'
-        }
+    '~/.tmux.conf': 'tmux/tmuxconfig',
+    '~/.tmux/plugins/tpm': 'tmux/tpm/',
+
+    '~/.zsh': 'zsh/',
+    '~/.zshrc': 'zsh/zshrc',
+    '~/.zprofile': 'zsh/zprofile',
+
+    '~/.local/bin/fasd': 'zsh/fasd/fasd',
+
+    '~/.slimzsh': 'zsh/slimzsh/'
+    }
 
 post_actions = [
 # install miniforge
@@ -46,7 +51,11 @@ fi
 '''
 source "${HOME}/conda/etc/profile.d/conda.sh"
 source "${HOME}/conda/etc/profile.d/mamba.sh"
-mamba install -y ccache cmake ninja gcc gxx libzlib llvm-openmp
+mamba install -y ccache cmake ninja libzlib llvm-openmp c-compiler cxx-compiler fortran-compiler
+mamba search kernel-headers_linux-64 --quiet --json \
+    | python -c \
+        "import json, sys; data = sorted(json.loads('\\n'.join(line for line in sys.stdin))['kernel-headers_linux-64'], key=lambda x: x['version'])[-1]; print('kernel-headers_linux-64=' + data['version'])" \
+    | xargs mamba install -y --quiet
 ''',
 
 # install zplug
@@ -66,6 +75,19 @@ if [ -e $HOME/.cargo/env ]; then
 fi
 if ! [ -x "$(command -v rustc)" ]; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
+fi
+''',
+
+# update Rust
+'''
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if [ -e $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
+if [ -x "$(command -v rustup)" ]; then
+    rustup update
 fi
 ''',
 
@@ -143,7 +165,7 @@ if [ -e $HOME/.cargo/env ]; then
     source $HOME/.cargo/env
 fi
 if ! [ -x "$(command -v zellij)" ]; then
-    cargo install zellij
+    cargo install --locked zellij
 fi
 ''',
 

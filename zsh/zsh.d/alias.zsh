@@ -72,6 +72,11 @@ alias tl="tmux ls"
 alias ta="tmux attach -t"
 alias tn="tmux new -s"
 
+# zellij
+alias zl="zellij list-sessions"
+alias za="zellij attach"
+alias zn="zellij run -n"
+
 # pip
 pip(){
 	if [[ $@ == "clear" ]]; then
