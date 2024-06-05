@@ -20,7 +20,6 @@ tasks = {
     '~/.batconfig': 'bat/batconfig',
     '~/.vim': 'vim/',
     '~/.vimrc': 'vim/vimrc',
-    '~/.config/helix/config.toml': 'helix/config.toml',
     '~/.config/zellij/config.kdl': 'zellij/config.kdl',
 
     '~/.tmux.conf': 'tmux/tmuxconfig',

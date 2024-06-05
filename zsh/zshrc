@@ -70,6 +70,8 @@ fi
 
 export COLORTERM="truecolor"
 
-if [ -x "$(command -v hx)" ]; then
-    export EDITOR="hx"
+if [ -x "$(command -v nvim)" ]; then
+    export EDITOR="nvim"
+elif [ -x "$(command -v vim)" ]; then
+    export EDITOR="vim"
 fi
