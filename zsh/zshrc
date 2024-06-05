@@ -1,6 +1,6 @@
 # user setting
 if [ -e ${HOME}/.setting ]; then
-        source ${HOME}/.setting
+    source ${HOME}/.setting
 fi
 
 source $HOME/.slimzsh/slim.zsh
@@ -64,4 +64,6 @@ if [ -x "$(command -v direnv)" ]; then
     eval "$(direnv hook zsh)"
 fi
 
-
+if [ -e $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
