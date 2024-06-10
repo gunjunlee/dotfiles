@@ -22,7 +22,7 @@ tasks = {
     '~/.vim': 'vim/',
     '~/.vimrc': 'vim/vimrc',
 
-    '~/.config/nvim': 'NvChad/',
+    '~/.config/nvim': 'vim/nvim/',
 
     '~/.config/zellij/config.kdl': 'zellij/config.kdl',
 
@@ -42,11 +42,13 @@ post_actions = [
 # install miniforge
 '''
 if ! [ -x "$(command -v mamba)" ]; then
-    wget -O Miniforge3.sh "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
-    bash Miniforge3.sh -b -p "${HOME}/conda"
+    wget -O Miniforge3.sh "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh" \
+    && bash Miniforge3.sh -b -p "${HOME}/conda" \
+    && rm Miniforge3.sh
     source "${HOME}/conda/etc/profile.d/conda.sh"
     source "${HOME}/conda/etc/profile.d/mamba.sh"
     mamba init zsh
+
 fi
 ''',
 
@@ -54,7 +56,7 @@ fi
 '''
 source "${HOME}/conda/etc/profile.d/conda.sh"
 source "${HOME}/conda/etc/profile.d/mamba.sh"
-mamba install -y ccache cmake ninja libzlib llvm-openmp c-compiler cxx-compiler fortran-compiler
+mamba install -y ccache cmake ninja libzlib llvm-openmp c-compiler cxx-compiler fortran-compiler nodejs
 mamba search kernel-headers_linux-64 --quiet --json \
     | python -c \
         "import json, sys; data = sorted(json.loads('\\n'.join(line for line in sys.stdin))['kernel-headers_linux-64'], key=lambda x: x['version'])[-1]; print('kernel-headers_linux-64=' + data['version'])" \
