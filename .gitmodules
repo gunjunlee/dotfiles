@@ -6,4 +6,5 @@
 	url = https://github.com/changs/slimzsh
 [submodule "tmux/tpm"]
 	path = tmux/tpm
-        url = https://github.com/tmux-plugins/tpm
+  url = https://github.com/tmux-plugins/tpm
+
