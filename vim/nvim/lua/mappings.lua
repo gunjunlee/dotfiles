@@ -26,8 +26,3 @@ map("v", "<S-right>", "<right>")
 -- comment line
 --map("i", { "[[", "]]" }, "<esc>gcci")
 --map({ "n", "v" }, { "[[", "]]" }, "gcc")
-
--- vim-multiple-cursors
-map("i", "<C-d>", "<esc><cmd>lua require('multiple-cursors').add_cursor()<cr>")
-
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
