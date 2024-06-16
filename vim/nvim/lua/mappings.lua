@@ -34,3 +34,9 @@ map("n", "<S-left>", "vh")
 map("n", "<S-right>", "vl")
 map("n", "<S-up>", "vk")
 map("n", "<S-down>", "vj")
+
+-- undo, redo
+map("n", "<c-z>", "<cmd>undo<cr>")
+map("n", "<c-r>", "<cmd>redo<cr>")
+map("i", "<c-z>", "<esc><cmd>undo<cr>i")
+map("i", "<c-r>", "<esc><cmd>redo<cr>i")

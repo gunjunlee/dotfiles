@@ -90,6 +90,29 @@ return {
       require('Comment').setup()
     end
   },
+
+
+  -- {
+  --   'Bekaboo/dropbar.nvim',
+  --   event = "BufRead",
+  --   dependencies = {
+  --     'nvim-telescope/telescope-fzf-native.nvim'
+  --   }
+  -- },
+  {
+    "utilyre/barbecue.nvim",
+    event = "BufRead",
+    name = "barbecue",
+    cmd = "Barbecue",
+    version = "*",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons", -- optional dependency
+    },
+    config = function()
+      require("barbecue").setup()
+    end,
+  },
   -- {
   -- 	"williamboman/mason.nvim",
   -- 	opts = {
