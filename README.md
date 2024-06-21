@@ -9,5 +9,5 @@ zsh
 python3 install.py
 ```
 
-If icons appear broken, you can download a font you like from Nerd Fonts and apply it locally. (I recommend D2Coding.)
+If icons appear broken, you can download a font you like from [Nerd Fonts](https://www.nerdfonts.com/font-downloads) and apply it locally. (I recommend D2Coding.)
 
