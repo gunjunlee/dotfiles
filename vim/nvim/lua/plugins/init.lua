@@ -60,6 +60,7 @@ return {
           ["*"] = true,
         },
       }
+      require("copilot.auth").signin()
     end,
   },
 
@@ -113,15 +114,22 @@ return {
       require("barbecue").setup()
     end,
   },
-  -- {
-  -- 	"williamboman/mason.nvim",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"lua-language-server", "stylua",
-  -- 			"html-lsp", "css-lsp" , "prettier"
-  -- 		},
-  -- 	},
-  -- },
+
+  {
+    "williamboman/mason-lspconfig.nvim",
+    event = "BufRead",
+    opts = {
+      ensure_installed = {
+        "lua_ls",
+        "ruff",
+        "clangd",
+      },
+    },
+    config = function(_, opts)
+      require("mason-lspconfig").setup(opts)
+    end,
+  },
+
   --
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
