@@ -174,6 +174,22 @@ if ! [ -x "$(command -v zellij)" ]; then
 fi
 ''',
 
+# install Node.js
+'''
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if [ -e $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
+if [ -x "$(command -v node)" ]; then
+    mamba install -y nodejs
+    ln -s "${HOME}/conda/bin/node" "${HOME}/.local/bin/node"
+    ln -s "${HOME}/conda/bin/npm" "${HOME}/.local/bin/npm"
+fi
+''',
+
+
 # install github cli
 '''
 export CPATH=${CPATH}:"${CONDA_PREFIX}"/include

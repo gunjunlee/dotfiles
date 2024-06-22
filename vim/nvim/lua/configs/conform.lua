@@ -10,7 +10,15 @@ local options = {
     -- These options will be passed to conform.format()
     timeout_ms = 500,
     lsp_fallback = true,
+
+    -- Only runt formatter "trim_whitespace" on save
+    filter = function(formatter)
+      return formatter.name == "trim_whitespace"
+    end,
   },
+
+  -- for debugging
+  -- log_level = vim.log.levels.DEBUG,
 }
 
 require("conform").setup(options)

@@ -7,7 +7,11 @@ local lspconfig = require "lspconfig"
 -- local pdb = require "debug"
 -- pdb.debug()
 
-local servers = { "html", "cssls", "lua_ls", "tsserver" }
+local servers = {
+  "html", "cssls",
+  "lua_ls",
+  "ruff",
+}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -16,4 +20,3 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
-

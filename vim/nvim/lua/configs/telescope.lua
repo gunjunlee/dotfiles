@@ -1,3 +1,5 @@
-local option
+local options = {
 
-return option
+}
+
+return options
