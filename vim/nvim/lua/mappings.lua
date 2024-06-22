@@ -30,11 +30,7 @@ map("i", ":Wq", "<esc>:wq<cr>i")
 map("i", ":WQ", "<esc>:wq<cr>i")
 map("i", ":w", "<esc>:w<cr>i")
 map("i", ":q", "<esc>:q<cr>i")
-map("n", ":wq", ":wq<cr>")
-map("n", ":Wq", ":wq<cr>")
-map("n", ":WQ", ":wq<cr>")
-map("n", ":w", ":w<cr>")
-map("n", ":q", ":q<cr>")
+map("i", ":q!", "<esc>:q!<cr>i")
 
 -- indenting using tab
 -- map("i", "<tab>", "<esc>>>i")
@@ -114,3 +110,65 @@ map("n", "dg", "gd")
 -- goto next/prev cursor position in jump list
 map("n", "<a-left>", "<c-o>")
 map("n", "<a-right>", "<c-i>")
+
+-- use enter to accept completion when command line is open
+function _G.enter_completion()
+  if vim.fn.pumvisible() == 1 then
+    return vim.api.nvim_replace_termcodes("<c-y>", true, true, true)
+  else
+    return "<cr>"
+  end
+end
+map("c", "<cr>", enter_completion, { expr = true, noremap = true })
+
+-- split window
+map("n", "b:", "<cmd>split<cr>")
+map("n", "bs", "<cmd>split<cr>")
+map("n", "b-", "<cmd>split<cr>")
+map("n", "sh", "<cmd>split<cr>")
+map("n", "hs", "<cmd>split<cr>")
+map("n", "b|", "<cmd>vsplit<cr>")
+map("n", "b%", "<cmd>vsplit<cr>")
+map("n", "sv", "<cmd>vsplit<cr>")
+map("n", "vs", "<cmd>vsplit<cr>")
+
+-- open file in new buffer
+map({ "i", "n" }, "<c-o>", "<cmd>Telescope find_files<cr>")
+-- open file in new buffer and split window
+map({ "i", "n" }, "<c-O>", "<cmd>vsplit<cr><cmd>Telescope find_files<cr>")
+
+-- Telescope (rg, fd, bf, bb)
+-- search in current directory
+map("n", "rg", "<cmd>Telescope live_grep<cr>")
+map("n", "fd", "<cmd>Telescope find_files<cr>")
+map("n", "bf", "<cmd>Telescope buffers<cr>")
+map("n", "bb", "<cmd>Telescope buffers<cr>")
+
+-- move between windows
+map("i", "<c-w>h", "<cmd>i2n()<cr><c-w>hi")
+map("i", "<c-w>j", "<cmd>i2n()<cr><c-w>ji")
+map("i", "<c-w>k", "<cmd>i2n()<cr><c-w>ki")
+map("i", "<c-w>l", "<cmd>i2n()<cr><c-w>li")
+
+-- close window
+map("i", "<c-w>q", "<cmd>i2n()<cr><c-w>c")
+
+-- toggleterm
+map({ "i", "n", "t" }, "<c-t><c-t>", "<cmd>ToggleTerm<cr>")
+map("t", "<c-t>t", "<cmd>wincmd k<cr>")
+
+function _G.toggleterm_split()
+  local terms = require("toggleterm.terminal").get_all(true)
+  if #terms == 0 then
+    return '<cmd>execute 1 . "ToggleTerm"<cr>'
+  elseif #terms == 1 then
+    return '<cmd>execute 2 . "ToggleTerm"<cr>'
+  else
+    print("Cannot open more than 3 terminal windows")
+  end
+end
+
+map("t", "<esc>", "<c-\\><c-n>")
+map("t", "jk", "<c-\\><c-n>")
+map("t", "<c-b>|", toggleterm_split, { expr = true, noremap = true })
+

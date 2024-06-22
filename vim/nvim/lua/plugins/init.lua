@@ -131,6 +131,16 @@ return {
     end,
   },
 
+  {
+    "akinsho/toggleterm.nvim",
+    event = "BufRead",
+    config = function()
+      require("toggleterm").setup {
+
+      }
+    end
+  }
+
   --
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
