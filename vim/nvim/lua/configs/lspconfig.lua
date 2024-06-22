@@ -7,16 +7,44 @@ local lspconfig = require "lspconfig"
 -- local pdb = require "debug"
 -- pdb.debug()
 
-local servers = {
+local default_servers = {
   "html", "cssls",
-  "lua_ls",
   "ruff",
 }
 
-for _, lsp in ipairs(servers) do
+for _, lsp in ipairs(default_servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
     on_init = on_init,
     capabilities = capabilities,
   }
 end
+
+lspconfig["lua_ls"].setup {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim", "use" },
+      },
+    },
+  },
+}
+
+lspconfig["pyright"].setup {
+  settings = {
+    pyright = {
+      -- Using Ruff's import organizer
+      disableOrganizeImports = true,
+    },
+    python = {
+      analysis = {
+        -- Ignore all files for analysis to exclusively use Ruff for linting
+        ignore = { '*' },
+      },
+    },
+  },
+}
+

@@ -10,7 +10,7 @@ alias jl="jupyter lab"
 #  nvidia-smi
 alias smi="nvidia-smi"
 function ns() {
-        watch -n 0.1 "nvidia-smi $@"
+  watch -n 0.1 "nvidia-smi $@"
 }
 
 alias cudamem="fuser -v /dev/nvidia*"
@@ -21,11 +21,15 @@ if [ -x "$(command -v nvim)" ]; then
 fi
 
 if [ -x "$(command -v eza)" ]; then
-	alias ls="eza"
+  if command eza --version > /dev/null 2>&1; then
+    alias ls="eza"
+  fi
 fi
 alias ll="ls -algh"
 if [ -x "$(command -v bat)" ]; then
-	alias cat="bat -p"
+  if command bat --version > /dev/null 2>&1; then
+	  alias cat="bat -p"
+  fi
 fi
 alias c="command"
 alias watch="command watch --color"
@@ -68,8 +72,6 @@ function gguser(){
 	gguname $1
 	gguemail $2
 }
-
-alias genautoenv="touch .autoenv.zsh .autoenv_leave.zsh"
 
 # tmux
 alias tl="tmux ls"

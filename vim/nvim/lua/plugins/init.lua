@@ -123,6 +123,7 @@ return {
         "lua_ls",
         "ruff",
         "clangd",
+        "pyright",
       },
     },
     config = function(_, opts)
