@@ -1,6 +1,6 @@
 """
-lgj970401's dotfile
-https://github.com/lgj970401/dotfiles.git
+gunjunlee's dotfile
+https://github.com/gunjunlee/dotfiles.git
 """
 print(__doc__)
 
