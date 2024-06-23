@@ -56,7 +56,33 @@ fi
 '''
 source "${HOME}/conda/etc/profile.d/conda.sh"
 source "${HOME}/conda/etc/profile.d/mamba.sh"
-mamba install -y ccache cmake ninja libzlib llvm-openmp c-compiler cxx-compiler fortran-compiler nodejs
+packages=(
+    ccache
+    cmake
+    ninja
+    libzlib
+    llvm-openmp
+    c-compiler
+    cxx-compiler
+    fortran-compiler
+    nodejs
+)
+uninstall_packages=()
+
+# check if the package is installed
+for package in "${packages[@]}"; do
+    if conda list "$package" > /dev/null 2>&1; then
+        echo "package '$package' is already installed."
+    else
+        echo "package '$package' is not installed."
+        uninstall_packages+=("$package")
+    fi
+done
+
+if [ ${#uninstall_packages[@]} -gt 0 ]; then
+    mamba install -y "${uninstall_packages[@]}"
+fi
+
 mamba search kernel-headers_linux-64 --quiet --json \
     | python -c \
         "import json, sys; data = sorted(json.loads('\\n'.join(line for line in sys.stdin))['kernel-headers_linux-64'], key=lambda x: x['version'])[-1]; print('kernel-headers_linux-64=' + data['version'])" \
@@ -182,7 +208,7 @@ source "${HOME}/conda/etc/profile.d/mamba.sh"
 if [ -e $HOME/.cargo/env ]; then
     source $HOME/.cargo/env
 fi
-if [ -x "$(command -v node)" ]; then
+if ! [ -x "$(command -v node)" ]; then
     mamba install -y nodejs
     ln -s "${HOME}/conda/bin/node" "${HOME}/.local/bin/node"
     ln -s "${HOME}/conda/bin/npm" "${HOME}/.local/bin/npm"
