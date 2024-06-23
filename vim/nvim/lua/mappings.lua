@@ -8,7 +8,7 @@ local map = vim.keymap.set
 local unmap = vim.keymap.del
 
 -- insert mode to normal mode
-local function i2n()
+function _G.i2n()
   if vim.fn.mode() == "i" then
     -- check if cursor is at the end of the line
     if vim.fn.col(".") == vim.fn.col("$") then
@@ -23,14 +23,23 @@ local function i2n()
 end
 
 map("n", ";", ":", { desc = "cmd enter command mode" })
-map("i", "jk", i2n, { expr = true, silent = true, noremap = true, desc = "jk to normal mode" })
-map("i", "kl", i2n, { expr = true, silent = true, noremap = true, desc = "jk to normal mode" })
+map("i", "jk", "<cmd>lua i2n()<cr>", { noremap = true, desc = "jk to normal mode" })
+map("i", "kl", "<cmd>lua i2n()<cr>", { noremap = true, desc = "jk to normal mode" })
 map("i", ":wq", "<esc>:wq<cr>i")
 map("i", ":Wq", "<esc>:wq<cr>i")
 map("i", ":WQ", "<esc>:wq<cr>i")
 map("i", ":w", "<esc>:w<cr>i")
+map("i", ":W", "<esc>:w<cr>i")
 map("i", ":q", "<esc>:q<cr>i")
 map("i", ":q!", "<esc>:q!<cr>i")
+
+-- copy and paste
+map("n", "<c-c>", '"+y', { noremap =  true })
+map("n", "<c-x>", '"+d', { noremap =  true })
+map("v", "<c-c>", '"+y', { noremap =  true })
+map("v", "<c-x>", '"+d', { noremap =  true })
+map("n", "<c-v>", '"+p', { noremap =  true })
+map("i", "<c-v>", '<cmd>lua i2n()<cr>"+pi', { noremap =  true })
 
 -- indenting using tab
 -- map("i", "<tab>", "<esc>>>i")
@@ -133,9 +142,9 @@ map("n", "sv", "<cmd>vsplit<cr>")
 map("n", "vs", "<cmd>vsplit<cr>")
 
 -- open file in new buffer
-map({ "i", "n" }, "<c-o>", "<cmd>Telescope find_files<cr>")
+map({ "i", "n" }, "<c-o>o", "<cmd>Telescope find_files<cr>")
 -- open file in new buffer and split window
-map({ "i", "n" }, "<c-O>", "<cmd>vsplit<cr><cmd>Telescope find_files<cr>")
+map({ "i", "n" }, "<c-o><c-o>", "<cmd>vsplit<cr><cmd>Telescope find_files<cr>")
 
 -- Telescope (rg, fd, bf, bb)
 -- search in current directory
@@ -145,13 +154,34 @@ map("n", "bf", "<cmd>Telescope buffers<cr>")
 map("n", "bb", "<cmd>Telescope buffers<cr>")
 
 -- move between windows
-map("i", "<c-w>h", "<cmd>i2n()<cr><c-w>hi")
-map("i", "<c-w>j", "<cmd>i2n()<cr><c-w>ji")
-map("i", "<c-w>k", "<cmd>i2n()<cr><c-w>ki")
-map("i", "<c-w>l", "<cmd>i2n()<cr><c-w>li")
+map("i", "<c-b>h", "<cmd>lua i2n()<cr><c-w>hi")
+map("i", "<c-b>j", "<cmd>lua i2n()<cr><c-w>ji")
+map("i", "<c-b>k", "<cmd>lua i2n()<cr><c-w>ki")
+map("i", "<c-b>l", "<cmd>lua i2n()<cr><c-w>li")
+map("i", "<c-b><left>", "<cmd>lua i2n()<cr><c-w>hi")
+map("i", "<c-b><down>", "<cmd>lua i2n()<cr><c-w>ji")
+map("i", "<c-b><up>", "<cmd>lua i2n()<cr><c-w>ki")
+map("i", "<c-b><right>", "<cmd>lua i2n()<cr><c-w>li")
+
+map("i", "<c-w>h", "<cmd>lua i2n()<cr><c-w>hi")
+map("i", "<c-w>j", "<cmd>lua i2n()<cr><c-w>ji")
+map("i", "<c-w>k", "<cmd>lua i2n()<cr><c-w>ki")
+map("i", "<c-w>l", "<cmd>lua i2n()<cr><c-w>li")
+map("i", "<c-w><left>", "<cmd>lua i2n()<cr><c-w>hi")
+map("i", "<c-w><down>", "<cmd>lua i2n()<cr><c-w>ji")
+map("i", "<c-w><up>", "<cmd>lua i2n()<cr><c-w>ki")
+map("i", "<c-w><right>", "<cmd>lua i2n()<cr><c-w>li")
+map("n", "<c-b>h", "<cmd>lua i2n()<cr><c-w>hi")
+map("n", "<c-b>j", "<cmd>lua i2n()<cr><c-w>ji")
+map("n", "<c-b>k", "<cmd>lua i2n()<cr><c-w>ki")
+map("n", "<c-b>l", "<cmd>lua i2n()<cr><c-w>li")
+map("n", "<c-b><left>", "<cmd>lua i2n()<cr><c-w>hi")
+map("n", "<c-b><down>", "<cmd>lua i2n()<cr><c-w>ji")
+map("n", "<c-b><up>", "<cmd>lua i2n()<cr><c-w>ki")
+map("n", "<c-b><right>", "<cmd>lua i2n()<cr><c-w>li")
 
 -- close window
-map("i", "<c-w>q", "<cmd>i2n()<cr><c-w>c")
+map("i", "<c-w>q", "<cmd>lua i2n()<cr><c-w>c")
 
 -- toggleterm
 map({ "i", "n", "t" }, "<c-t><c-t>", "<cmd>ToggleTerm<cr>")

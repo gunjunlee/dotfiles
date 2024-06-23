@@ -59,6 +59,7 @@ return {
         filetypes = {
           ["*"] = true,
         },
+        copilot_node_command = vim.env.HOME .. "/conda/bin/node",
       }
       require("copilot.auth").signin()
     end,
@@ -121,9 +122,9 @@ return {
     opts = {
       ensure_installed = {
         "lua_ls",
-        "ruff",
+        "ruff", "pyright",
         "clangd",
-        "pyright",
+        "html", "cssls",
       },
     },
     config = function(_, opts)
