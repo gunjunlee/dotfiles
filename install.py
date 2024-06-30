@@ -84,7 +84,7 @@ if [ ${#uninstall_packages[@]} -gt 0 ]; then
 fi
 
 mamba search kernel-headers_linux-64 --quiet --json \
-    | python -c \
+    | python3 -c \
         "import json, sys; data = sorted(json.loads('\\n'.join(line for line in sys.stdin))['kernel-headers_linux-64'], key=lambda x: x['version'])[-1]; print('kernel-headers_linux-64=' + data['version'])" \
     | xargs mamba install -y --quiet
 ''',
