@@ -121,8 +121,11 @@ return {
     event = "BufRead",
     opts = {
       ensure_installed = {
+        -- https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers
+        -- or ":=require("mason-lspconfig").get_mappings()"
         "lua_ls",
         "ruff", "pyright",
+        "rust_analyzer",
         "clangd",
         "html", "cssls",
       },
