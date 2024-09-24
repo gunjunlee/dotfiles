@@ -2,7 +2,7 @@
 keybinds {
     normal {
         // uncomment this and adjust key if using copy_on_select=false
-        bind "Alt c" { Copy; }
+        bind "Ctrl y" { Copy; }
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
@@ -96,6 +96,7 @@ keybinds {
         bind "c" { SearchToggleOption "CaseSensitivity"; }
         bind "w" { SearchToggleOption "Wrap"; }
         bind "o" { SearchToggleOption "WholeWord"; }
+        bind "Ctrl y" { Copy; }
     }
     entersearch {
         bind "Ctrl c" "Esc" { SwitchToMode "Scroll"; }
