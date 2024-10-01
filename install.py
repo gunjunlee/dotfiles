@@ -208,7 +208,7 @@ source "${HOME}/conda/etc/profile.d/mamba.sh"
 if [ -e $HOME/.cargo/env ]; then
     source $HOME/.cargo/env
 fi
-if ! [ -x "$(command -v node)" ]; then
+if ! [ -e "${HOME}/.local/bin/node" ]; then
     mamba install -y nodejs
     ln -s "${HOME}/conda/bin/node" "${HOME}/.local/bin/node"
     ln -s "${HOME}/conda/bin/npm" "${HOME}/.local/bin/npm"
