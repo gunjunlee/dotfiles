@@ -17,6 +17,7 @@
 	ha = log --all --graph --decorate --oneline --simplify-by-decoration
 [core]
 	editor = "vim"
+	autocrlf = input
 [user]
 	name = gunjunlee
 	email = gunjunlee97@gmail.com
