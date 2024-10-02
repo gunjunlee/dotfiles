@@ -79,14 +79,14 @@ map("i", "<c-z>", "<esc><cmd>undo<cr>i")
 map("i", "<c-r>", "<esc><cmd>redo<cr>i")
 
 -- close suggestion with esc
-local function close_suggestion()
+function _G.close_suggestion()
   if require("cmp").visible() then
-    return require("cmp").close()
+    return vim.api.nvim_replace_termcodes("<c-e><esc>", true, true, true)
   else
     return "<esc>"
   end
 end
-map("i", "<esc>", close_suggestion, { expr = true, noremap = true, silent = true })
+map("i", "<esc>", _G.close_suggestion, { expr = true, noremap = true, silent = true })
 
 -- page up, page down to half page up, half page down
 -- and move scroll to keep cursor at the same position
