@@ -36,6 +36,8 @@ tasks = {
     '~/.local/bin/fasd': 'zsh/fasd/fasd',
 
     '~/.slimzsh': 'zsh/slimzsh/',
+
+    '~/.local/bin/script': 'script.py',
 }
 
 post_actions = [
