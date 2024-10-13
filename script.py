@@ -83,6 +83,8 @@ def dn(container_name=None, image_name=None):
         "-v /:/host",
         "--gpus all",
         f"-v {os.path.expanduser('~')}/.cache:{os.path.expanduser('~')}/.cache"
+        "--ipc=host",
+        "--shm-size=8g",
     ]
 
     selected_opts = select_options(default_opts, desc=f"Select options for container {container_name} (image: {image_name})")
