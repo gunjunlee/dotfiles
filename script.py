@@ -79,10 +79,10 @@ def dn(container_name=None, image_name=None):
     user_name = subprocess.getoutput("whoami")
 
     default_opts = [
-        f"-v {os.path.expanduser('~')}/conda:{os.path.expanduser('~')}/conda",
+        f"-v {os.path.expanduser('~')}/conda:/home/{user_name}/conda",
         "-v /:/host",
         "--gpus all",
-        f"-v {os.path.expanduser('~')}/.cache:{os.path.expanduser('~')}/.cache"
+        f"-v {os.path.expanduser('~')}/.cache:/home/{user_name}/.cache"
         "--ipc=host",
         "--shm-size=8g",
     ]
@@ -96,7 +96,7 @@ def dn(container_name=None, image_name=None):
         if not subprocess.getoutput(f"{sudo} docker images -q {image_name}"):
             print(f"Image {image_name} does not exist")
             print(f"Building image {image_name} from {CUR_DIR}/Dockerfile")
-            cmd = f"{sudo} docker build -t {image_name} --build-arg USER_ID={user_id} --build-arg GROUP_ID={group_id} --build-arg USER_NAME={user_name} -f {CUR_DIR}/Dockerfile"
+            cmd = f"{sudo} docker build -t {image_name} --build-arg USER_ID={user_id} --build-arg GROUP_ID={group_id} --build-arg USER_NAME={user_name} {CUR_DIR} -f {CUR_DIR}/Dockerfile"
             subprocess.run(cmd, shell=True)
 
     # Check if container is running
