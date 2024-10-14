@@ -1,11 +1,13 @@
-FROM nvcr.io/nvidia/pytorch:24.04-py3
+FROM nvcr.io/nvidia/pytorch:24.09-py3
 
 LABEL maintainer="gunjunlee <gunjunlee@gmail.com>"
 
 RUN \
     apt-get update && \
     apt-get install -y software-properties-common && \
-    apt-get install -y build-essential cmake ninja-build git sudo
+    apt-get install -y build-essential cmake ninja-build git sudo ccache htop tmux zsh wget curl vim && \
+    apt-get install -y python3-pip python3-dev python3-setuptools python3-venv && \
+    pip install setuptools_scm
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
