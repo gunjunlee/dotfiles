@@ -82,7 +82,7 @@ def dn(container_name=None, image_name=None):
         f"-v {os.path.expanduser('~')}/conda:/home/{user_name}/conda",
         "-v /:/host",
         "--gpus all",
-        f"-v {os.path.expanduser('~')}/.cache:/home/{user_name}/.cache"
+        f"-v {os.path.expanduser('~')}/.cache:/home/{user_name}/.cache",
         "--ipc=host",
         "--shm-size=8g",
     ]
