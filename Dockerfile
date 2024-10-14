@@ -34,4 +34,7 @@ RUN git clone https://github.com/gunjunlee/dotfiles.git ~/.dotfiles && \
         sudo bash setup.sh && \
         python3 install.py
 
+RUN pip config set global.no-cache-dir false
+
 SHELL ["/bin/zsh", "-c"]
+

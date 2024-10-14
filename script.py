@@ -12,6 +12,11 @@ CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 
 def select_options(options, desc="Select options"):
     selected = [True] * len(options)
+    for i, option in enumerate(options):
+        if isinstance(option, tuple):
+            options[i] = option[0]
+            selected[i] = option[1]
+
     index = 0
 
     num_printed_lines = 0
@@ -78,11 +83,15 @@ def dn(container_name=None, image_name=None):
     group_id = subprocess.getoutput("id -g")
     user_name = subprocess.getoutput("whoami")
 
+    is_home = os.path.expanduser('~') == f"/home/{user_name}"
+
     default_opts = [
-        f"-v {os.path.expanduser('~')}/conda:/home/{user_name}/conda",
+        (f"-v {os.path.expanduser('~')}/conda:/home/{user_name}/conda", is_home),
         "-v /:/host",
         "--gpus all",
         f"-v {os.path.expanduser('~')}/.cache:/home/{user_name}/.cache",
+        (f"-v {os.path.expanduser('~')}/.local:/home/{user_name}/.local", is_home),
+        f"-v {os.path.expanduser('~')}/.ssh:/home/{user_name}/.ssh",
         "--ipc=host",
         "--shm-size=8g",
     ]
