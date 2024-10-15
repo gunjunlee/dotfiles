@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/driver:550-5.15.0-1068-oracle-ubuntu22.04
+FROM nvcr.io/nvidia/pytorch:24.09-py3
 
 LABEL maintainer="gunjunlee <gunjunlee@gmail.com>"
 
