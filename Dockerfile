@@ -1,13 +1,11 @@
-FROM nvcr.io/nvidia/pytorch:24.09-py3
+FROM nvcr.io/nvidia/driver:550-5.15.0-1068-oracle-ubuntu22.04
 
 LABEL maintainer="gunjunlee <gunjunlee@gmail.com>"
 
 RUN \
     apt-get update && \
     apt-get install -y software-properties-common && \
-    apt-get install -y build-essential cmake ninja-build git sudo ccache htop tmux zsh wget curl vim && \
-    apt-get install -y python3-pip python3-dev python3-setuptools python3-venv && \
-    pip install setuptools_scm
+    apt-get install -y build-essential cmake ninja-build git sudo ccache htop zsh wget curl
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
@@ -23,7 +21,6 @@ RUN groupadd -g ${GROUP_ID} ${USER_NAME} && \
     useradd -m -u ${USER_ID} -g ${GROUP_ID} ${USER_NAME} -s /bin/zsh && \
     echo "${USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-RUN chown -chR ${USER_NAME}:${USER_NAME} /workspace
 RUN chown -chR ${USER_NAME}:${USER_NAME} /home/${USER_NAME}
 
 USER ${USER_NAME}
@@ -33,11 +30,6 @@ RUN git clone https://github.com/gunjunlee/dotfiles.git ~/.dotfiles && \
         git submodule update --init --recursive && \
         sudo bash setup.sh && \
         python3 install.py
-
-RUN sudo pip config set --global global.no-cache-dir false
-RUN sudo pip config set --user global.no-cache-dir false
-RUN sudo pip config set --site global.no-cache-dir false
-RUN sudo pip config set global.no-cache-dir false
 
 SHELL ["/bin/zsh", "-c"]
 
