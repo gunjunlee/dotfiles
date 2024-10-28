@@ -86,11 +86,11 @@ def dn(container_name=None, image_name=None):
     is_home = os.path.expanduser('~') == f"/home/{user_name}"
 
     default_opts = [
-        (f"-v {os.path.expanduser('~')}/conda:/home/{user_name}/conda", is_home),
+        (f"-v {os.path.expanduser('~')}/conda:/home/{user_name}/conda", False),
         "-v /:/host",
         "--gpus all",
         f"-v {os.path.expanduser('~')}/.cache:/home/{user_name}/.cache",
-        (f"-v {os.path.expanduser('~')}/.local:/home/{user_name}/.local", is_home),
+        (f"-v {os.path.expanduser('~')}/.local:/home/{user_name}/.local", False),
         f"-v {os.path.expanduser('~')}/.ssh:/home/{user_name}/.ssh",
         "--ipc=host",
         "--shm-size=8g",
