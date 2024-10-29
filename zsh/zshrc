@@ -6,7 +6,6 @@ fi
 if [ -e $HOME/.cargo/env ]; then
     source $HOME/.cargo/env
 fi
-
 export PATH=$PATH:$HOME/.local/bin
 
 source $HOME/.slimzsh/slim.zsh
@@ -43,7 +42,7 @@ fi
 
 zplug load
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh && export PATH=${HOME}/.fzf/bin:$PATH
+[ -f ~/.fzf.zsh ] && export PATH=${HOME}/.fzf/bin:$PATH && source ~/.fzf.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
