@@ -41,3 +41,4 @@ dm() {
 
 alias dn="~/.local/bin/script dn"
 alias da="~/.local/bin/script da"
+alias dr="~/.local/bin/script dr"

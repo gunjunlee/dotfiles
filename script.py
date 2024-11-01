@@ -31,13 +31,16 @@ def select_options(options, desc="Select options"):
         print(f"\033[F" * num_printed_lines, end="")
         num_printed_lines = 0
         _print(desc)
-        _print("Select options (use arrow keys to navigate, space/enter to select, 'q' to finish, 'a' to add new custom option, Ctrl+C to exit):")
+        man = "Select options (use arrow keys to navigate, space/enter to select, 'q' to finish, 'a' to add new custom option, Ctrl+C to exit):"
+        max_len = max(max(len(option), len(man)) for option in options)
+        eraser = " " * max_len + "\r"
         for idx, option in enumerate(options):
             prefix = "[x]" if selected[idx] else "[ ]"
             if idx == index:
-                _print(f"> {prefix} {option}")
+                _print(eraser + f"> {prefix} {option}")
             else:
-                _print(f"  {prefix} {option}")
+                _print(eraser + f"  {prefix} {option}")
+        _print(man)
         _print()
 
         fd = sys.stdin.fileno()
@@ -71,7 +74,7 @@ def select_options(options, desc="Select options"):
     selected_options = [option for i, option in enumerate(options) if selected[i]]
     return selected_options
 
-def dn(container_name=None, image_name=None):
+def dn(container_name=None, image_name=None, rebuild=False):
     if not container_name:
         print("Usage: dn <container_name> <image_name>")
         return
@@ -83,16 +86,18 @@ def dn(container_name=None, image_name=None):
     group_id = subprocess.getoutput("id -g")
     user_name = subprocess.getoutput("whoami")
 
-    is_home = os.path.expanduser('~') == f"/home/{user_name}"
+    user_home = os.path.expanduser('~')
 
     default_opts = [
-        (f"-v {os.path.expanduser('~')}/conda:/home/{user_name}/conda", False),
+        (f"-v {user_home}/conda:{user_home}/conda", False),
         "-v /:/host",
         "--gpus all",
-        f"-v {os.path.expanduser('~')}/.cache:/home/{user_name}/.cache",
-        (f"-v {os.path.expanduser('~')}/.local:/home/{user_name}/.local", False),
-        f"-v {os.path.expanduser('~')}/.ssh:/home/{user_name}/.ssh",
+        f"-v {user_home}/.cache:{user_home}/.cache",
+        (f"-v {user_home}/.local:{user_home}/.local", False),
+        f"-v {user_home}/.ssh:{user_home}/.ssh",
         "--ipc=host",
+        "--network=host",
+        "--privileged",
         "--shm-size=8g",
     ]
 
@@ -101,11 +106,17 @@ def dn(container_name=None, image_name=None):
 
     if not image_name:
         image_name = f"{os.getlogin()}-default"
-        # Check if image exists. If not, build it from ${CUR_DIR}/Dockerfile
-        if not subprocess.getoutput(f"{sudo} docker images -q {image_name}"):
-            print(f"Image {image_name} does not exist")
-            print(f"Building image {image_name} from {CUR_DIR}/Dockerfile")
-            cmd = f"{sudo} docker build -t {image_name} --build-arg USER_ID={user_id} --build-arg GROUP_ID={group_id} --build-arg USER_NAME={user_name} {CUR_DIR} -f {CUR_DIR}/Dockerfile"
+
+    # Check if image exists. If not, build it from ${CUR_DIR}/Dockerfile
+    if not subprocess.getoutput(f"{sudo} docker images -q {image_name}"):
+        print(f"Image {image_name} does not exist")
+        print(f"Building image {image_name} from {CUR_DIR}/Dockerfile")
+        cmd = f"{sudo} docker build -t {image_name} --build-arg USER_ID={user_id} --build-arg GROUP_ID={group_id} --build-arg USER_NAME={user_name} --build-arg USER_HOME={user_home} {CUR_DIR} -f {CUR_DIR}/Dockerfile"
+        subprocess.run(cmd, shell=True)
+    else:
+        if rebuild:
+            print(f"Rebuilding image {image_name} from {CUR_DIR}/Dockerfile")
+            cmd = f"{sudo} docker build -t {image_name} --build-arg USER_ID={user_id} --build-arg GROUP_ID={group_id} --build-arg USER_NAME={user_name} --build-arg USER_HOME={user_home} {CUR_DIR} -f {CUR_DIR}/Dockerfile"
             subprocess.run(cmd, shell=True)
 
     # Check if container is running
@@ -120,6 +131,7 @@ def dn(container_name=None, image_name=None):
     else:
         print(f"Creating and starting container {container_name}")
         subprocess.run(f"{sudo} docker run -d -it -u {user_id}:{group_id} {' '.join(selected_opts)} --name {container_name} {image_name} /bin/zsh", shell=True)
+
 
 def da(container_name):
     if not container_name:
@@ -144,6 +156,33 @@ def da(container_name):
     else:
         print(f"Container {container_name} does not exist")
 
+
+def dr(container_name):
+    if not container_name:
+        print("Usage: dr <container_name>")
+        return
+
+    # Check if sudo is required to run docker commands
+    sudo = "" if "docker" in subprocess.getoutput("groups") else "sudo"
+
+    # Check if container exists
+    if subprocess.call(f"{sudo} docker container inspect {container_name} > /dev/null 2>&1", shell=True) == 0:
+        # Check if container is running
+        is_running = subprocess.getoutput(f"{sudo} docker container inspect --format='{{{{.State.Running}}}}' {container_name}") == "true"
+        if is_running:
+            yn = input(f"Container {container_name} is running. Do you want to stop and remove the container? [y/n] ")
+            if yn.lower() == 'y':
+                print(f"Stopping and removing container: {container_name}")
+                subprocess.run(f"{sudo} docker stop {container_name} && {sudo} docker rm {container_name}", shell=True)
+            else:
+                print("Exiting...")
+        else:
+            print(f"Removing container: {container_name}")
+            subprocess.run(f"{sudo} docker rm {container_name}", shell=True)
+    else:
+        print(f"Container {container_name} does not exist")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="A script with multiple commands.")
     subparsers = parser.add_subparsers(dest="command", help="Subcommands")
@@ -152,17 +191,24 @@ if __name__ == "__main__":
     parser_dn = subparsers.add_parser('dn', help="Run 'dn (= docker create)' command")
     parser_dn.add_argument('container_name', nargs='?', help="Container name")
     parser_dn.add_argument('image_name', nargs='?', help="Image name")
+    parser_dn.add_argument('--rebuild', action='store_true', help="Rebuild image")
 
     # 'da' command
     parser_da = subparsers.add_parser('da', help="Run 'da (= docker activate)' command")
     parser_da.add_argument('container_name', nargs='?', help="Container name")
 
+    # 'dr' command
+    parser_dr = subparsers.add_parser('dr', help="Run 'dr (= docker remove ps)' command")
+    parser_dr.add_argument('container_name', nargs='?', help="Container name")
+
     args = parser.parse_args()
 
     if args.command == "dn":
-        dn(args.container_name, args.image_name)
+        dn(args.container_name, args.image_name, args.rebuild)
     elif args.command == "da":
         da(args.container_name)
+    elif args.command == "dr":
+        dr(args.container_name)
     else:
         parser.print_help()
         sys.exit(1)
