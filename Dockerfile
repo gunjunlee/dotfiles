@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM nvcr.io/nvidia/pytorch:24.10-py3
 
 LABEL maintainer="gunjunlee <gunjunlee97@gmail.com>"
 
@@ -33,5 +33,8 @@ RUN git clone https://github.com/gunjunlee/dotfiles.git ~/.dotfiles && \
         git submodule update --init --recursive && \
         sudo bash setup.sh && \
         python3 install.py
+
+RUN . ~/conda/etc/profile.d/conda.sh && \
+  conda config --set auto_activate_base false
 
 SHELL ["/bin/zsh", "-c"]
