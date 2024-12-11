@@ -31,6 +31,11 @@ if [ -x "$(command -v bat)" ]; then
 	  alias cat="bat -p"
   fi
 fi
+if [ -x "$(command -v fdfind)" ]; then
+  if command fdfind --version > /dev/null 2>&1; then
+    alias fd="fdfind"
+  fi
+fi
 alias c="command"
 alias watch="command watch --color"
 alias w="watch"
@@ -86,7 +91,7 @@ alias zn="zellij attach -c"
 # pip
 pip(){
 	if [[ $@ == "clear" ]]; then
-		command pip freeze | grep -v "^-e" | xargs pip uninstall -y
+		pip freeze | grep --color=auto -v "^-e" | awk -F ' @ ' '{print $1}' | xargs pip uninstall -y
 	else
 		command pip "$@"
 	fi
