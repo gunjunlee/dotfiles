@@ -37,4 +37,6 @@ RUN git clone https://github.com/gunjunlee/dotfiles.git ~/.dotfiles && \
 RUN . ~/conda/etc/profile.d/conda.sh && \
   conda config --set auto_activate_base false
 
+RUN sudo apt-get remove -y neovim
+
 SHELL ["/bin/zsh", "-c"]
