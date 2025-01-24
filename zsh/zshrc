@@ -61,6 +61,11 @@ unset __conda_setup
 
 # register direnv hook after conda initializing
 if [ -x "$(command -v direnv)" ]; then
+    if [ -n ${ZELLIJ} ] && [ -n ${DIRENV_DIR} ]; then
+        for var in ${(k)parameters}; do
+            [[ $var == DIRENV_* ]] && unset $var
+        done
+    fi
     eval "$(direnv hook zsh)"
 fi
 
@@ -71,3 +76,4 @@ if [ -x "$(command -v nvim)" ]; then
 elif [ -x "$(command -v vim)" ]; then
     export EDITOR="vim"
 fi
+
