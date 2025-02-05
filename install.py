@@ -202,6 +202,19 @@ if ! [ -x "$(command -v zellij)" ]; then
 fi
 ''',
 
+# install bottom
+'''
+export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+if [ -e $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
+if ! [ -x "$(command -v btm)" ]; then
+    cargo install --locked bottom
+fi
+''',
+
 # install Node.js
 '''
 export CPATH=${CPATH}:"${CONDA_PREFIX}"/include
