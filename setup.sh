@@ -24,6 +24,11 @@ unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)
         echo -e "${Cyan}Linux DETECTED!${NC}"
+        if ! [ -x "$(command -v sudo)" ]; then
+            echo -e "${RED}sudo is not installed!${NC}"
+            echo -e "${GREEN}Please install sudo first!${NC}"
+            exit 1
+        fi
     	sudo apt-get update
         sudo apt-get install -y llvm clang feh wget htop zsh make curl gawk autotools-dev automake libtool libtool-bin cmake unzip pkg-config gettext direnv ripgrep fd-find
 
@@ -46,10 +51,16 @@ case "${unameOut}" in
             echo -e "${GREEN}installing brew...${NC}"
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	fi
-        brew install feh llvm wget openssl htop neovim zsh direnv ccache bottom igrep ripgrep fd
+        if ! [ -x "$(command -v rvm)" ]; then
+            echo -e "${GREEN}installing rvm...${NC}"
+            curl -sSL https://get.rvm.io | bash -s stable
+        fi
+        brew install grep feh llvm wget openssl htop neovim zsh direnv ccache bottom ripgrep fd
         rvm get stable --auto-dotfiles
         echo 'export PATH="/usr/local/opt/llvm/bin:$PATH"' >> ~/.setting
-        ln -s $(which lld) /usr/local/bin/ld
+        if ! [ -e /usr/local/bin/ld ]; then
+            ln -s $(which lld) /usr/local/bin/ld
+        fi
         defaults write com.apple.PowerChime ChimeOnNoHardware -bool true;killall PowerChime # disable charging sound
         ;;
     # CYGWIN*)    machine=Cygwin;;
