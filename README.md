@@ -1,7 +1,12 @@
 # Installation
 
-```
+```bash
 git clone git@github.com:gunjunlee/dotfiles.git ~/.dotfiles
+or
+git clone https://github.com/gunjunlee/dotfiles.git ~/.dotfiles
+```
+
+```bash
 cd ~/.dotfiles
 git submodule update --init --recursive
 bash setup.sh
@@ -13,7 +18,7 @@ If icons appear broken, you can download a font you like from [Nerd Fonts](https
 
 If nvim is failed to run, remove nvchad using command below and try again.
 
-```
+```bash
 rm -rf ~/.config/nvim
 rm -rf ~/.local/share/nvim
 rm -rf ~/.local/state/nvim
