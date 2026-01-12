@@ -86,9 +86,14 @@ if [ ${#uninstall_packages[@]} -gt 0 ]; then
 fi
 
 mamba search kernel-headers_linux-64 --quiet --json \
-    | python3 -c \
-        "import json, sys; data = sorted(json.loads('\\n'.join(line for line in sys.stdin))['kernel-headers_linux-64'], key=lambda x: x['version'])[-1]; print('kernel-headers_linux-64=' + data['version'])" \
-    | xargs mamba install -y --quiet
+  | python3 -c \
+"import json, sys
+from packaging.version import Version
+data = json.loads(sys.stdin.read())
+pkgs = data['result']['pkgs']
+best = max(pkgs, key=lambda p: (Version(p['version']), p.get('build_number', -1)))
+print(f\\\"{best['name']}={best['version']}={best['build']}\\\")" \
+  | xargs mamba install -y --quiet
 ''',
 
 # install zplug
